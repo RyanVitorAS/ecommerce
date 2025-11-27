@@ -1,22 +1,21 @@
-// src/firebase.js
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, OAuthProvider } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// 🔴 Cole aqui o firebaseConfig do seu projeto
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBwz41c2X-RvuIhigM05KdhMXlNLMjJ4QY",
-  authDomain: "karen-site-9e8f0.firebaseapp.com",
-  projectId: "karen-site-9e8f0",
-  storageBucket: "karen-site-9e8f0.firebasestorage.app",
-  messagingSenderId: "199721152796",
-  appId: "1:199721152796:web:5160c136edb7fe4a500ad9"
+  apiKey: "AIzaSyCyETNvizwHP_P1Gs6LgfCmje8YqnKnh2I",
+  authDomain: "react-login-c59ab.firebaseapp.com",
+  projectId: "react-login-c59ab",
+  storageBucket: "react-login-c59ab.firebasestorage.app",
+  messagingSenderId: "84148489352",
+  appId: "1:84148489352:web:6644b290a0be8ae67d633d", 
+  measurementId: "G-1YRRMP0PMQ"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
-export const microsoftProvider = new OAuthProvider("microsoft.com");
-
-// (Opcional) escopos extras para Microsoft, ex:
-// microsoftProvider.addScope("User.Read");
+const analytics = getAnalytics(app);

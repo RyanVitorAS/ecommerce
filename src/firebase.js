@@ -10,11 +10,12 @@ const firebaseConfig = {
   apiKey: "AIzaSyCyETNvizwHP_P1Gs6LgfCmje8YqnKnh2I",
   authDomain: "react-login-c59ab.firebaseapp.com",
   projectId: "react-login-c59ab",
-  storageBucket: "react-login-c59ab.firebasestorage.app",
+  storageBucket: "react-login-c59ab.appspot.com",
   messagingSenderId: "84148489352",
   appId: "1:84148489352:web:6644b290a0be8ae67d633d",
   measurementId: "G-1YRRMP0PMQ"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

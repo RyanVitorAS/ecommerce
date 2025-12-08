@@ -1,38 +1,61 @@
-// src/Components/Header.jsx
-import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
-const Header = () => {
-  const { user, loginWithGoogle, loginWithMicrosoft, logout } = useAuth();
+function Header() {
+  const { cart } = useCart();
 
   return (
     <header className="header">
-      <h1>ShopGeek</h1>
-      <p>Experiências de aprendizagem & desenvolvimento web</p>
+      <div className="logo">
+        <img
+          src="https://th.bing.com/th/id/R.a086c4b3a10bad841ff31d7a5d87430c?rik=MF1TqkhniP2Mow&pid=ImgRaw&r=0"
+          alt="Aurora Store"
+        />
+        <h1>GEEK <span>Shop</span></h1>
+      </div>
 
-      <div style={{ marginLeft: "auto" }}>
-        {user ? (
-          <>
-            <span style={{ marginRight: "1rem" }}>
-              Olá, {user.displayName || user.email}
-            </span>
-            <button onClick={logout}>Sair</button>
-          </>
-        ) : (
-          <>
-            <button onClick={loginWithGoogle}>
-              Entrar com Google
-            </button>
-            <button
-              onClick={loginWithMicrosoft}
-              style={{ marginLeft: "0.5rem" }}
+      <div className="search-box">
+        <input type="text" placeholder="Qual produto que está procurando?" />
+      </div>
+
+      <div className="menu">
+
+        <Link to="/">Home</Link>
+        <Link to="/conta">Minha conta</Link>
+
+        {/* Ícone do carrinho com notificação */}
+        <div style={{ position: "relative" }}>
+          <Link to="/carrinho">Carrinho</Link>
+
+          {cart.length > 0 && (
+            <span
+              style={{
+                position: "absolute",
+                top: -8,
+                right: -10,
+                backgroundColor: "red",
+                color: "white",
+                width: 20,
+                height: 20,
+                borderRadius: "50%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: 12,
+                fontWeight: "bold"
+              }}
             >
-              Entrar com Microsoft
-            </button>
-          </>
-        )}
+              {cart.length}
+            </span>
+          )}
+        </div>
+
+        <div className="account">
+          <Link to="/login">Entre ou Cadastre-se</Link>
+        </div>
       </div>
     </header>
   );
-};
+}
 
 export default Header;

@@ -1,8 +1,16 @@
+import {Col, Image} from 'react-bootstrap';
+
 function Hero() {
-  return (
+   return (
+    
     <section className="hero">
-      <h2>Crio soluções digitais que transformam ideias em realidade</h2>
-      <p>Especialista em HTML, CSS e JavaScript. Projetos modernos, responsivos e com performance de ponta.</p>
+      <div className="hero-text">
+        SEJA VOCÊ <br /> MESMO!!
+      </div>
+      
+      <Col xs={5} md={2}>
+          <Image src="https://i.pinimg.com/474x/24/3f/7c/243f7c6221c4000d9f72e2afb6470a3c--tee-shirts-geek-t-shirts.jpg" thumbnail />
+        </Col>
     </section>
   );
 }

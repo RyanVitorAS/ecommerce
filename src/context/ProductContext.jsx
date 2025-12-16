@@ -1,7 +1,9 @@
 import { createContext, useContext, useState } from "react";
 
+// Criando o contexto
 const ProductContext = createContext();
 
+// Produtos iniciais
 const initialProducts = [
   {
     id: 1,
@@ -26,14 +28,12 @@ const initialProducts = [
   }
 ];
 
+// Provider do contexto
 export function ProductProvider({ children }) {
   const [products, setProducts] = useState(initialProducts);
 
   const addProduct = (product) => {
-    setProducts(prev => [
-      ...prev,
-      { ...product, id: Date.now() }
-    ]);
+    setProducts(prev => [...prev, { ...product, id: Date.now() }]);
   };
 
   const removeProduct = (id) => {
@@ -47,6 +47,11 @@ export function ProductProvider({ children }) {
   );
 }
 
+// Hook seguro
 export function useProducts() {
-  return useContext(ProductContext);
+  const context = useContext(ProductContext);
+  if (!context) {
+    throw new Error("useProducts deve ser usado dentro de um ProductProvider");
+  }
+  return context;
 }

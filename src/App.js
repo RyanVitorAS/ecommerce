@@ -11,7 +11,9 @@ import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 
 import Carrinho from './pages/Carrinho';
-import Conta from './pages/Conta';
+import CadastroProduto from "./pages/CadastroProduto";
+import Produto from "./pages/Produto";
+
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -41,7 +43,9 @@ function App() {
 
        
         <Route path="/carrinho" element={<Carrinho />} />
-         <Route path="/conta" element={<Conta />} />
+         <Route path="/cadastrar" element={<CadastroProduto />} />
+         <Route path="/produto/:id" element={<Produto />} />
+
 
       </Routes>
     </Router>
@@ -50,4 +54,3 @@ function App() {
 }
 
 export default App;
-

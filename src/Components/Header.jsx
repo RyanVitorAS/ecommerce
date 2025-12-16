@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useProducts } from "../context/ProductContext";
+import { useState } from "react";
 
 function Header() {
   const { cart } = useCart();
+  const { products } = useProducts();
+  const [search, setSearch] = useState("");
+
+  // filtra produtos conforme o texto digitado
+  const filteredProducts = products.filter(p =>
+    p.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <header className="header">
@@ -14,16 +23,39 @@ function Header() {
         <h1>GEEK <span>Shop</span></h1>
       </div>
 
-      <div className="search-box">
-        <input type="text" placeholder="Qual produto que está procurando?" />
+      {/* 🔍 CAIXA DE PESQUISA */}
+      <div className="search-box" style={{ position: "relative" }}>
+        <input
+          type="text"
+          placeholder="Qual produto que está procurando?"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+
+        {/* 📋 LISTA DE RESULTADOS */}
+        {search && (
+          <div className="search-results">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map(p => (
+                <Link
+                  key={p.id}
+                  to={`/produto/${p.id}`}
+                  onClick={() => setSearch("")}
+                >
+                  {p.name}
+                </Link>
+              ))
+            ) : (
+              <p>Nenhum produto encontrado</p>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="menu">
-
         <Link to="/">Home</Link>
         <Link to="/conta">Minha conta</Link>
 
-        {/* Ícone do carrinho com notificação */}
         <div style={{ position: "relative" }}>
           <Link to="/carrinho">Carrinho</Link>
 
@@ -50,9 +82,7 @@ function Header() {
           )}
         </div>
 
-        <div className="account">
-          <Link to="/login">Entre ou Cadastre-se</Link>
-        </div>
+        <Link to="/cadastrar">Cadastrar Produto</Link>
       </div>
     </header>
   );

@@ -3,9 +3,16 @@ import { useCart } from "../context/CartContext";
 export default function Carrinho() {
   const { cart, removeFromCart, clearCart } = useCart();
 
+function handleBuy() {
+  alert("Compra sucedida! 🛒✅");
+  clearCart();
+}
+
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   return (
+
+    
     <div style={{ padding: "40px" }}>
       <h1>Seu Carrinho</h1>
 
@@ -62,12 +69,26 @@ export default function Carrinho() {
             }}
           >
             Limpar carrinho
+
           </button>
+          <button
+            onClick={handleBuy}
+            style={{
+              marginTop: 20,
+              marginLeft: 10,
+              background: "green",
+              color: "white",
+              padding: "10px 20px",
+              borderRadius: "5px",
+              border: "none",
+              cursor: "pointer"
+            }}
+          >
+            Comprar Produto(s)
+           </button>
+
         </>
       )}
     </div>
   );
 }
-
-
-
